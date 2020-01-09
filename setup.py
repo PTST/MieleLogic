@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="mielelogic", # Replace with your own username
+    name="mielelogic",  # Replace with your own username
     version="0.0.19",
     author="PTST",
     author_email="patrick@steffensen.io",
@@ -13,13 +13,11 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/PTST/MieleLogic",
     packages=setuptools.find_packages(),
-    install_requires=[
-        "requests >= 2.21.0"
-    ],
+    install_requires=["requests >= 2.21.0"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
 )

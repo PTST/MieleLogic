@@ -1,5 +1,6 @@
 from mielelogic import MieleLogic
 import time
+
 miele = MieleLogic("Annapatrick", "annapatrick")
 
 initial_states = miele.Get_Laundry_State()
