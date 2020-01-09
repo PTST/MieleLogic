@@ -18,7 +18,6 @@ class MieleLogic(object):
         self.api_url = urlunsplit(_uri._replace(netloc=f'api.{_uri.netloc}'))
         _uri = None
         self.Authenticate()
-        self.token = "test"
         self.Get_Details()
 
     def Authenticate(self):
@@ -96,6 +95,8 @@ class MieleLogic(object):
         return [TimeTable(v) for k, v in r.json()["MachineTimeTables"].items()]
 
     def reserve_time_slot(self, time_slot):
+        if isinstance(time_slot, dict):
+            time_slot = TimeSlot(time_slot)
         url = f"{self.api_url}/v3/reservations"
         headers = {
             "Authorization": self.token
@@ -113,6 +114,8 @@ class MieleLogic(object):
         return r.json()["ResultOK"]
 
     def delete_reservation(self, reservation):
+        if isinstance(reservation, dict):
+            reservation = Reservation(reservation)
         url = f"{self.api_url}/v3/reservations"
         headers = {
             "Authorization": self.token

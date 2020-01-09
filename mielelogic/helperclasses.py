@@ -1,6 +1,7 @@
 from enum import Enum
 from datetime import datetime
 import requests
+import json
 
 DATEFORMAT = "%Y-%m-%dT%H:%M:%S"
 ALT_DATEFORMAT = "%Y-%m-%d %H:%M:%S"
@@ -24,8 +25,19 @@ class Washer(object):
         self.state = f'{attrs["Text1"]} {attrs["Text2"]}'
         self.type = WasherType(attrs["MachineSymbol"])
     
+    def to_json(self):
+        return {
+            "Machine": self.machine_name,
+            "Available": self.available,
+            "State": self.state,
+            "Type": self.type
+        }
+
+    def __eq__(self, value):
+        return isinstance(value, Washer) and str(self.to_json()) == str(value.to_json())
+
     def __repr__(self):
-        return f"{self.machine_name}\n{self.available}\n{self.type}\n{self.state}\n"
+        return str(self.to_json())
 
 class TimeSlot(object):
     def __init__(self, attrs, machine_id):

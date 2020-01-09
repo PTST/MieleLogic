@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="mielelogic", # Replace with your own username
-    version="0.0.4",
+    version="0.0.19",
     author="PTST",
     author_email="patrick@steffensen.io",
     description="API interface for MieleLogic.com",
