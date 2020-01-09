@@ -42,8 +42,6 @@ with open("setup.py", "r+") as f:
     f.write(setup_py)
     f.truncate()
 
-shutil.rmtree("dist")
-
 result = run(
     f"{python_exe} setup.py sdist bdist_wheel",
     stdout=out,
