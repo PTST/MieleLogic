@@ -29,7 +29,9 @@ with open("setup.py", "r+") as f:
     setup_py = f.read()
     matches = version_regex.search(setup_py)
     version = StrictVersion(matches.group(1))
-    version = StrictVersion(f"{version.version[0]}.{version.version[1]}.{version.version[2]+1}")
+    version = StrictVersion(
+        f"{version.version[0]}.{version.version[1]}.{version.version[2]+1}"
+    )
     if args.version:
         version = StrictVersion(args.version)
     version = str(version)
@@ -42,11 +44,20 @@ with open("setup.py", "r+") as f:
 
 shutil.rmtree("dist")
 
-result = run(f"{python_exe} setup.py sdist bdist_wheel", stdout=out, universal_newlines=True, shell=True)
+result = run(
+    f"{python_exe} setup.py sdist bdist_wheel",
+    stdout=out,
+    universal_newlines=True,
+    shell=True,
+)
 if result.returncode != 0:
     raise Exception("Could not execute build")
 
 
-result = run(f"{python_exe} -m twine upload --repository-url {repository_url} dist/*", universal_newlines=True, shell=True)
+result = run(
+    f"{python_exe} -m twine upload --repository-url {repository_url} dist/*",
+    universal_newlines=True,
+    shell=True,
+)
 if result.returncode != 0:
     raise Exception("Could not upload build")
