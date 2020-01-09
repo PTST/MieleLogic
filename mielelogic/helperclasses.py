@@ -32,6 +32,7 @@ class Washer(object):
 
 
 
+
 class TimeSlot(object):
     def __init__(self, attrs, machine_id):
         self.start_time = datetime.strptime(attrs["Start"], DATEFORMAT)
